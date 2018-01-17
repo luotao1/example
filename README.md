@@ -1,0 +1,2 @@
+# example
+fluid inference example
