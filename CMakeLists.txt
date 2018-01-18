@@ -9,5 +9,5 @@ include_directories(${PADDLE_ROOT}/third_party/protobuf/include)
 include_directories(${PADDLE_ROOT}/third_party/eigen3)
 include_directories(${PADDLE_ROOT}/include)
 target_link_libraries(${PROJECT_NAME} 
-  ${PADDLE_ROOT}/lib/libpaddle_fluid_shared.so
+  ${PADDLE_ROOT}/lib/libpaddle_fluid.so
   -lrt -ldl -lpthread)

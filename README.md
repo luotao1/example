@@ -15,6 +15,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$PADDLE_ROOT \
       -DWITH_PYTHON=OFF \
       -DWITH_MKL=OFF \
       ..
+make install
 ```
 ## Inference Example Project
 - Build:
@@ -26,6 +27,7 @@ cd example
 mkdir build
 cd build
 cmake -DPADDLE_ROOT=PADDLE_ROOT ..
+make
 ```
 - Inference:
 
