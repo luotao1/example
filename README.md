@@ -26,7 +26,8 @@ git clone https://github.com/luotao1/fluid_inference_example.git
 cd example
 mkdir build
 cd build
-cmake -DPADDLE_ROOT=PADDLE_ROOT ..
+# using shared library
+cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=shared ..
 make
 ```
 - Inference:
