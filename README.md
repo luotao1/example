@@ -1,6 +1,6 @@
 ## Build Fluid Shared library
 Commands:
-```
+```bash
 PADDLE_ROOT=/path/of/fluidapi
 git clone https://github.com/PaddlePaddle/Paddle.git
 git checkout -b luotao1-fluid_infer develop
@@ -20,26 +20,30 @@ make install
 ## Inference Example Project
 - Build:
 
-```
+```bash
 PADDLE_ROOT=/path/of/fluidapi
+CUDA_LIB=/path/of/cuda_library
+CUDNN_LIB=/path/of/cudnn_library
 git clone https://github.com/luotao1/fluid_inference_example.git
 cd example
 mkdir build
 cd build
 # using shared library
 cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=shared ..
+# or using static library
+cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=static -DCUDA_LIB=CUDA_LIB -DCUDNN_LIB=CUDNN_LIB ..
 make
 ```
 - Inference:
 
-```
+```bash
 cd build
 ../run.sh
 ```
 
 - Results:
 
-```
+```txt
 FLAGS_dirname: ../model/
 FLAGS_feed_var_names: x
 FLAGS_fetch_var_names: fc_2.tmp_2
