@@ -15,7 +15,8 @@ cmake -DCMAKE_INSTALL_PREFIX=$PADDLE_ROOT \
       -DWITH_PYTHON=OFF \
       -DWITH_MKL=OFF \
       ..
-make install
+make
+make inference_lib_dist
 ```
 ## Inference Example Project
 - Build:
