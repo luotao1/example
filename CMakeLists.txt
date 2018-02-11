@@ -11,7 +11,7 @@ include_directories(${PADDLE_ROOT}/third_party/eigen3)
 include_directories(${PADDLE_ROOT}/)
 if(LIB_TYPE STREQUAL "shared")
   target_link_libraries(${PROJECT_NAME} 
-    ${PADDLE_ROOT}/paddle/inference/libpaddle_fluid.so
+    ${PADDLE_ROOT}/paddle/fluid/inference/libpaddle_fluid.so
     -lrt -ldl -lpthread)
 else()
   set(CUDA_LIB $ENV{CUDA_LIB} CACHE PATH "CUDA Library Path")

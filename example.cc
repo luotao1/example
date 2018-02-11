@@ -15,9 +15,9 @@ limitations under the License. */
 #include <time.h>
 #include <iostream>
 #include "gflags/gflags.h"
-#include "paddle/framework/init.h"
-#include "paddle/framework/lod_tensor.h"
-#include "paddle/inference/io.h"
+#include "paddle/fluid/framework/init.h"
+#include "paddle/fluid/framework/lod_tensor.h"
+#include "paddle/fluid/inference/io.h"
 
 DEFINE_string(dirname, "", "Directory of the inference model.");
 
