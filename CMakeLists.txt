@@ -18,12 +18,12 @@ else()
   set(CUDNN_LIB $ENV{CUDNN_LIB} CACHE PATH "CUDNN Library Path")
   target_link_libraries(${PROJECT_NAME} 
     -Wl,--whole-archive
-    ${PADDLE_ROOT}/lib/libpaddle_fluid.a
+    ${PADDLE_ROOT}/paddle/fluid/inference/libpaddle_fluid.a
     -Wl,--no-whole-archive
-    ${PADDLE_ROOT}/third_party/glog/lib/libglog.a
-    ${PADDLE_ROOT}/third_party/gflags/lib/libgflags.a
-    ${PADDLE_ROOT}/third_party/protobuf/lib/libprotobuf-lite.a
-    ${PADDLE_ROOT}/third_party/openblas/lib/libopenblas.a
+    ${PADDLE_ROOT}/third_party/install/glog/lib/libglog.a
+    ${PADDLE_ROOT}/third_party/install/gflags/lib/libgflags.a
+    ${PADDLE_ROOT}/third_party/install/openblas/lib/libopenblas.a
+    ${PADDLE_ROOT}/third_party/install/protobuf/lib/libprotobuf.a
     ${CUDA_LIB}/libcublas.so
     ${CUDA_LIB}/libcudart.so
     ${CUDNN_LIB}/libcudnn.so
