@@ -13,7 +13,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$PADDLE_ROOT \
       -DWITH_SWIG_PY=OFF \
       -DWITH_GOLANG=OFF \
       -DWITH_PYTHON=OFF \
-      -DWITH_MKL=OFF \
+      -DWITH_MKL=OFF \ # or ON
       ..
 make
 make inference_lib_dist
@@ -23,16 +23,23 @@ make inference_lib_dist
 
 ```bash
 PADDLE_ROOT=/path/of/fluidapi
+# set environment
 CUDA_LIB=/path/of/cuda_library
 CUDNN_LIB=/path/of/cudnn_library
+# if using mkl library
+MKL_LIB=/PADDLE_ROOT/install/mklml/lib 
+export LD_LIBRARY_PATH=CUDA_LIB:CUDNN_LIB:MKL_LIB
+
 git clone https://github.com/luotao1/fluid_inference_example.git
 cd example
 mkdir build
 cd build
 # using shared library
 cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=shared ..
-# or using static library
-cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=static -DCUDA_LIB=CUDA_LIB -DCUDNN_LIB=CUDNN_LIB ..
+# or using static library and openblas math library
+cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=static -DMATH_LIB=openblas -DCUDA_LIB=CUDA_LIB ..
+# or using static library and mkl math library
+cmake -DPADDLE_ROOT=PADDLE_ROOT -DLIB_TYPE=static -DMATH_LIB=mkl -DCUDA_LIB=CUDA_LIB ..
 make
 ```
 - Inference:
