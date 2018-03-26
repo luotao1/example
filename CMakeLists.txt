@@ -10,18 +10,19 @@ include_directories(${PADDLE_ROOT}/third_party/install/glog/include)
 include_directories(${PADDLE_ROOT}/third_party/install/protobuf/include)
 include_directories(${PADDLE_ROOT}/third_party/eigen3)
 include_directories(${PADDLE_ROOT}/)
+if(MATH_TYPE STREQUAL "openblas")
+  set(MATH_LIB ${PADDLE_ROOT}/third_party/install/openblas/lib/libopenblas.a)
+else()
+  set(MATH_LIB ${PADDLE_ROOT}/third_party/install/mklml/lib/libmklml_intel.so)
+endif()
 if(LIB_TYPE STREQUAL "shared")
   target_link_libraries(${PROJECT_NAME} 
     ${PADDLE_ROOT}/paddle/fluid/inference/libpaddle_fluid.so
+    ${PADDLE_ROOT}/third_party/install/gflags/lib/libgflags.a
+    ${MATH_LIB}
     -lrt -ldl -lpthread)
 else()
-  if(MATH_TYPE STREQUAL "openblas")
-    set(MATH_LIB ${PADDLE_ROOT}/third_party/install/openblas/lib/libopenblas.a)
-  else()
-    set(MATH_LIB ${PADDLE_ROOT}/third_party/install/mklml/lib/libmklml_intel.so)
-  endif()
   set(CUDA_LIB $ENV{CUDA_LIB} CACHE PATH "CUDA Library Path")
-  set(CUDNN_LIB $ENV{CUDNN_LIB} CACHE PATH "CUDNN Library Path")
   target_link_libraries(${PROJECT_NAME} 
     -Wl,--whole-archive
     ${PADDLE_ROOT}/paddle/fluid/inference/libpaddle_fluid.a
