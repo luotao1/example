@@ -8,6 +8,9 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 include_directories(${PADDLE_ROOT}/third_party/install/gflags/include)
 include_directories(${PADDLE_ROOT}/third_party/install/glog/include)
 include_directories(${PADDLE_ROOT}/third_party/install/protobuf/include)
+include_directories(${PADDLE_ROOT}/third_party/install/snappystream/include)
+include_directories(${PADDLE_ROOT}/third_party/install/snappy/include)
+include_directories(${PADDLE_ROOT}/third_party/install/zlib/include)
 include_directories(${PADDLE_ROOT}/third_party/eigen3)
 include_directories(${PADDLE_ROOT}/)
 if(MATH_TYPE STREQUAL "openblas")
@@ -30,6 +33,9 @@ else()
     ${PADDLE_ROOT}/third_party/install/glog/lib/libglog.a
     ${PADDLE_ROOT}/third_party/install/gflags/lib/libgflags.a
     ${PADDLE_ROOT}/third_party/install/protobuf/lib/libprotobuf.a
+    ${PADDLE_ROOT}/third_party/install/snappystream/lib/libsnappystream.a
+    ${PADDLE_ROOT}/third_party/install/snappy/lib/libsnappy.a
+    ${PADDLE_ROOT}/third_party/install/zlib/lib/libz.a
     ${MATH_LIB}
     ${CUDA_LIB}/libcudart.so
     -lrt -ldl -lpthread)

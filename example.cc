@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
   // 1. Define place, executor, scope
   auto place = paddle::platform::CPUPlace();
-  paddle::framework::InitDevices();
+  paddle::framework::InitDevices(true);
   auto* executor = new paddle::framework::Executor(place);
   auto* scope = new paddle::framework::Scope();
 
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
   std::string dirname = FLAGS_dirname;
 
   // 2. Initialize the inference program
-  auto inference_program = paddle::inference::Load(*executor, *scope, dirname);
+  auto inference_program = paddle::inference::Load(executor, scope, dirname);
 
   // 3. Optional: perform optimization on the inference_program
 
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
   }
 
   // Run the inference program
-  executor->Run(*inference_program, scope, feed_targets, fetch_targets);
+  executor->Run(*inference_program, &*scope, &feed_targets, &fetch_targets);
 
   // Get outputs
   for (size_t i = 0; i < fetchs.size(); ++i) {
